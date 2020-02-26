@@ -1,1 +1,5 @@
 /* miniprogram/pages/course/list/index.wxss */
+.del {
+  margin: 4px;
+  background-color: orange;
+}

@@ -1,13 +1,19 @@
 <!--miniprogram/pages/course/list/index.wxml-->
 <view class="margin-x-16">
 
-  <view class="margin-t-24 flex-between" wx:for="{{list}}" wx:key="index">
+  <view class="margin-t-24 flex-between border round " wx:for="{{list}}" wx:key="index">
 
-    <view>{{item.name}}</view>
+    <view class="padding-8">
+      <view class="bold">{{item.name}}</view>
+      <view class="margin-t-16">{{item.description}}</view>
+    </view>
 
-    <navigator url="/pages/course/edit/index?index={{index}}">
-      Edit
-    </navigator>
+    <view class="flex-column items-end flex-between" wx:if="{{item._openid == myOpenId}}">
+      <view class="btn-plus del">×</view>
+      <navigator class="padding-8" url="/pages/course/edit/index?index={{index}}">
+        Edit
+      </navigator>
+    </view>
 
   </view>
 
