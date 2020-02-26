@@ -1,0 +1,18 @@
+<!--miniprogram/pages/course/list/index.wxml-->
+<view class="margin-x-16">
+
+  <view class="margin-t-24 flex-between" wx:for="{{list}}" wx:key="index">
+
+    <view>{{item.name}}</view>
+
+    <navigator url="/pages/course/edit/index?index={{index}}">
+      Edit
+    </navigator>
+
+  </view>
+
+  <navigator class="margin-t-24" url="/pages/course/edit/index">
+    <button class="bg-color-primary color-white">Add New</button>
+  </navigator>
+
+</view>

@@ -1,0 +1,13 @@
+/* miniprogram/pages/course/edit/index.wxss */
+
+.btn-plus {
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  font-size: 24px;
+  background-color: green;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+}
+

@@ -1,0 +1,61 @@
+<!--miniprogram/pages/course/edit/index.wxml-->
+<view class="margin-x-16">
+
+  <form bindsubmit="saveCourse">
+
+    <view class="text-right margin-t-16">
+      <text class="border round padding-x-4">Status</text>
+    </view>
+
+    <view class=" margin-t-24">
+      <view class="bold">Course Tittle</view>
+      <input class="padding-8 border-bottom" name='name' value="{{course.name}}"></input>
+    </view>
+
+    <view class="margin-t-24">
+      <view class="bold">Description</view>
+      <input class="padding-8 border-bottom" name='description' value="{{course.description}}"></input>
+    </view>
+
+    <view class="margin-t-24">
+
+      <view class="flex-between bold">
+        <text class="margin-r-16">Materials</text>
+        <view class="btn-plus" bindtap="showNewMaterial">{{showNewMaterial ? '×' : '+'}}</view>
+      </view>
+
+      <form class="" bindsubmit="addMaterial" wx:if="{{showNewMaterial}}">
+
+        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
+          <view class="">#</view>
+          <input class="" name='nbr'></input>
+        </view>
+
+        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
+          <view class="">Name</view>
+          <input class="" name='name'></input>
+        </view>
+
+        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
+          <view class="">File</view>
+          <text name=''>{{newFile ? 'File choosed' : ''}}</text>
+          <input class="hidden" name='newFile' value="{{newFile}}"></input>
+          <image class="width-32 height-32" src="./cloud-upload.svg" bindtap="upload"></image>
+        </view>
+
+        <view class="padding-y-8 margin-t-24 border-bottom">
+          <button class="bg-color-secondary color-secondary" formType="submit">Save Material</button>
+        </view>
+
+      </form>
+
+    </view>
+
+    <view class="text-center margin-t-24">— No Materials —</view>
+
+    <view class="flex-center btn-area margin-t-24">
+      <button class="bg-color-primary color-white" formType="submit">Save Course</button>
+    </view>
+
+  </form>
+</view>
