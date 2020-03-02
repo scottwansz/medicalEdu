@@ -121,6 +121,10 @@ page {
   margin-right: 16px;
 }
 
+.padding-2 {
+  padding: 4px;
+}
+
 .padding-8 {
   padding: 8px;
 }

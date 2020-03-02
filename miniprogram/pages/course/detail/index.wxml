@@ -9,10 +9,10 @@
 
   <view class="margin-t-16 border-bottom">Mterials</view>
 
-  <view class="flex margin-t-16" wx:for="{{course.materials}}" wx:key="{{index}}">
+  <view class="flex flex-between margin-t-16" wx:for="{{course.materials}}" wx:key="{{index}}">
     <view class="w-10th text-center">{{item.nbr}}</view>
-    <view>{{item.name}}</view>
-    <view>( {{item.file?'file attached':'no file attached'}} )</view>
+    <view class="flex-1">{{item.name}} {{item.file?'':'( no file attached )'}}</view>
+    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full bg-color-primary color-white padding-2">▶</view>
   </view>
 
 </view>
