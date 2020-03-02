@@ -72,8 +72,8 @@
 
   <view class="flex flex-between items-center padding-y-8" wx:for="{{newMaterialList}}" wx:key="index">
 
-    <view class="flex">
-      <view class="margin-r-16">{{item.nbr}}</view>
+    <view class="flex flex-1">
+      <view class="w-10th text-center">{{item.nbr}}</view>
       <view>{{item.name}}</view>
     </view>
 
@@ -85,8 +85,8 @@
 
   <view class="flex flex-between items-center padding-y-8" wx:for="{{course.materials}}" wx:key="index">
 
-    <view class="flex">
-      <view class="margin-r-16">{{item.nbr}}</view>
+    <view class="flex flex-1">
+      <view class="w-10th text-center">{{item.nbr}}</view>
       <view>{{item.name}}</view>
     </view>
 

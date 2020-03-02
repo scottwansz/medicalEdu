@@ -133,7 +133,6 @@ Page({
     for (const item of this.data.newMaterialList) {
 
       if (!item.file) return
-      // let fileExt = item.file.split('.').pop()
 
       let res = await wx.cloud.uploadFile({
         cloudPath: `${courseId}/${Date.now()}.${item.file.split('.').pop()}`, // 上传至云端的路径
@@ -198,7 +197,7 @@ Page({
         list.unshift(data)
       }
 
-      // console.log('>>> course saved in edit page: ', getApp().globalData.courseList)
+      // console.log('>>> global course list got from edit page: ', getApp().globalData.courseList)
 
       wx.hideLoading()
       
