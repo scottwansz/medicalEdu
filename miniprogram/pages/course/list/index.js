@@ -12,22 +12,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function(options) {
+  onLoad: function(options) {
 
-    console.log('>>>> get open id in page course: ', getApp().getOpenId())
+    getApp().getOpenId().then(myOpenId => {
 
-    let myOpenId = await getApp().getOpenId()
-    this.setData({
-      myOpenId
-    })
+      // console.log('>>> openid get in onload of course list page: ', myOpenId)
 
-    wx.cloud.database().collection('course').get().then(result => {
-      // console.log(result.data)
-      getApp().globalData.courseList = result.data
       this.setData({
-        list: result.data
+        myOpenId
       })
+
     })
+
+
+    // wx.cloud.database().collection('course').get().then(result => {
+    //   // console.log(result.data)
+    //   getApp().globalData.courseList = result.data
+
+    //   this.setData({
+    //     list: result.data
+    //   })
+    // })
 
   },
 
@@ -41,7 +46,15 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: async function() {
+
+    // console.log('>>>> onshow in course list page.')
+
+    let list = await getApp().getCourseList()
+
+    this.setData({
+      list
+    })
 
   },
 
@@ -78,5 +91,57 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  delete(e) {
+    // console.log('>>> delete index in course list page: ', e.mark.index)
+    wx.showLoading({
+      title: 'deleting ...',
+    })
+
+    let index = e.mark.index
+    let course = this.data.list[index]
+
+    let _this = this
+
+    wx.showModal({
+      title: 'Warning',
+      content: `Are your to delet course ${course.name} ?`,
+      async success(res) {
+        if (res.confirm) {
+          // console.log('>>> confirmed the delete of course')
+
+          // delete the course material files
+          let fileList = course.materials.reduce(function(accumulator, current) {
+            // console.log('>>> current of material lis: ', current.file)
+            // console.log('>>> accumulator of reduce in course list: ', accumulator)
+            accumulator.push(current.file)
+            return accumulator
+          }, [])
+
+          // console.log('>>>> files of course to delecte: ', fileList)
+
+          let result = await wx.cloud.deleteFile({
+            fileList
+          })
+
+          // console.log('>>> result of files delte in course list: ', result)
+
+          wx.cloud.database().collection('course').doc(course._id).remove().then(res => {
+            // console.log('>>> res from course remove in course list page: ', res)
+            _this.data.list.splice(index, 1)
+            _this.setData({
+              list: _this.data.list
+            })
+
+            wx.hideLoading()
+
+            wx.showToast({
+              title: 'Course deleted',
+            })
+          })
+        }
+      }
+    })
   }
 })

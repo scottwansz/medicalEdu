@@ -9,53 +9,91 @@
 
     <view class=" margin-t-24">
       <view class="bold">Course Tittle</view>
-      <input class="padding-8 border-bottom" name='name' value="{{course.name}}"></input>
+      <input class="padding-y-8 border-bottom" name='name' value="{{course.name}}"></input>
     </view>
 
     <view class="margin-t-24">
-      <view class="bold">Description</view>
-      <input class="padding-8 border-bottom" name='description' value="{{course.description}}"></input>
+      <view class="bold margin-b-16">Description</view>
+      <!-- <input class="padding-y-8 border-bottom" name='description' value="{{course.description}}"></input> -->
+      <textarea class="width-full padding-8 border round border-box" name='description' value="{{course.description}}"></textarea>
     </view>
 
-    <view class="margin-t-24">
+    <!-- <view class="flex-center btn-area margin-t-24">
+      <button class="bg-color-primary color-white" formType="submit">Save Course</button>
+    </view> -->
 
-      <view class="flex-between bold">
-        <text class="margin-r-16">Materials</text>
-        <view class="btn-plus" bindtap="showNewMaterial">{{showNewMaterial ? '×' : '+'}}</view>
-      </view>
-
-      <form class="" bindsubmit="addMaterial" wx:if="{{showNewMaterial}}">
-
-        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
-          <view class="">#</view>
-          <input class="" name='nbr'></input>
-        </view>
-
-        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
-          <view class="">Name</view>
-          <input class="" name='name'></input>
-        </view>
-
-        <view class="flex-between items-center padding-y-8 margin-t-24 border-bottom">
-          <view class="">File</view>
-          <text name=''>{{newFile ? 'File choosed' : ''}}</text>
-          <input class="hidden" name='newFile' value="{{newFile}}"></input>
-          <image class="width-32 height-32" src="./cloud-upload.svg" bindtap="upload"></image>
-        </view>
-
-        <view class="padding-y-8 margin-t-24 border-bottom">
-          <button class="bg-color-secondary color-secondary" formType="submit">Save Material</button>
-        </view>
-
-      </form>
-
-    </view>
-
-    <view class="text-center margin-t-24">— No Materials —</view>
-
-    <view class="flex-center btn-area margin-t-24">
+    <view class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white">
       <button class="bg-color-primary color-white" formType="submit">Save Course</button>
     </view>
 
   </form>
+
+  <!-- Material header -->
+
+  <view class="margin-t-24">
+
+    <view class="flex flex-between bold margin-b-16">
+      <text class="margin-r-16">Materials</text>
+      <view class="btn-plus" bindtap="showNewMaterial">{{showNewMaterial ? '×' : '+'}}</view>
+    </view>
+
+  </view>
+
+  <!-- Add material form -->
+
+  <form class="position-relative" bindsubmit="addMaterial" wx:if="{{showNewMaterial}}">
+
+    <view class="flex flex-between items-center padding-y-8 margin-t-16 border-bottom">
+      <!-- <view class="">#</view> -->
+      <input class="" name='nbr' placeholder="Material #"></input>
+    </view>
+
+    <view class="flex flex-between items-center padding-y-8 margin-t-24 border-bottom">
+      <!-- <view class="">Name</view> -->
+      <!-- <label for="fileName">Name</label> -->
+      <input class="" id="fileName" name='name' placeholder="Material name"></input>
+    </view>
+
+    <view class="flex flex-between items-center padding-y-8 margin-t-24 border-bottom">
+      <!-- <view class="">File</view> -->
+      <text name=''>{{file ? 'File selected' : 'Select the file to upload'}}</text>
+      <input class="hidden" name='file' value="{{file}}"></input>
+      <image class="width-24 height-24" src="./cloud-upload.svg" bindtap="upload"></image>
+    </view>
+
+    <view class="padding-y-8 margin-t-24">
+      <button class="bg-color-secondary color-secondary" formType="submit">Add Material</button>
+    </view>
+
+  </form>
+
+
+  <!-- Material newly added -->
+
+  <view class="flex flex-between items-center padding-y-8" wx:for="{{newMaterialList}}" wx:key="index">
+
+    <view class="flex">
+      <view class="margin-r-16">{{item.nbr}}</view>
+      <view>{{item.name}}</view>
+    </view>
+
+    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full">×</view>
+  </view>
+
+
+  <!-- original material in course -->
+
+  <view class="flex flex-between items-center padding-y-8" wx:for="{{course.materials}}" wx:key="index">
+
+    <view class="flex">
+      <view class="margin-r-16">{{item.nbr}}</view>
+      <view>{{item.name}}</view>
+    </view>
+
+    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="deleteOldMaterial">×</view>
+  </view>
+
+  <view class="text-center margin-t-24" wx:if="{{course.Materials.length == 0}}">— No Materials —</view>
+
+
 </view>

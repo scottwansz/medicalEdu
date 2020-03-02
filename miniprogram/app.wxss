@@ -1,9 +1,8 @@
 page {
   color: #a0aec0;
-  /* padding: 16px 0px 24px 0px; */
-  /* display: flex;
-  flex-direction: column;
-  overflow: hidden; */
+  box-sizing: border-box;
+  margin-bottom: 60px;
+  position: relative;
 }
 
 .hidden {
@@ -16,23 +15,24 @@ page {
   display: flex;
 }
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
 }
 
+.flex-start {
+  justify-content: flex-start;
+}
+
 .flex-right {
-  display: flex;
   justify-content: right;
 }
 
 .flex-center {
-  display: flex;
   justify-content: center;
 }
 
 .flex-between {
-  display: flex;
   justify-content: space-between;
 }
 
@@ -45,23 +45,56 @@ page {
 }
 
 /** Size */
-
-.width-32 {
-  width: 32px;
+.width-full {
+  width: 100%;
 }
 
-.height-32 {
-  height: 32px;
+.width-24 {
+  width: 24px;
+}
+
+.height-24 {
+  height: 24px;
+}
+
+/* position */
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.left-0{
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.bottom-0 {
+  bottom: 0;
 }
 
 /** Spacing */
+.margin-x-auto {
+  margin: 0 auto;
+}
 
 .margin-x-16 {
   margin: 0 16px;
 }
 
 .margin-y-16 {
-  margin: 16px 0;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .margin-t-16 {
@@ -70,6 +103,10 @@ page {
 
 .margin-t-24 {
   margin-top: 24px;
+}
+
+.margin-b-16 {
+  margin-bottom: 16px;
 }
 
 .margin-r-16 {
@@ -81,11 +118,22 @@ page {
 }
 
 .padding-x-4 {
-  padding: 0 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.padding-y-4 {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .padding-y-8 {
-  padding: 8px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.padding-right-4 {
+  padding-right: 4px;
 }
 
 /** Border */
@@ -120,6 +168,18 @@ page {
 
 /**  Text Style */
 
+.text-size-sm {
+  font-size: 1.5rem;
+}
+
+.text-height-sm {
+  line-height: 22px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
 .text-right {
   text-align: right;
 }
@@ -128,9 +188,7 @@ page {
   text-align: center;
 }
 
-.bold {
-  font-weight: 700;
-}
+/* color */
 
 .color-primary {
   color: #a0aec0;

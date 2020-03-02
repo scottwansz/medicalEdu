@@ -1,7 +1,7 @@
 <!--miniprogram/pages/course/list/index.wxml-->
-<view class="margin-x-16">
+<view class="margin-x-16 position-relative">
 
-  <view class="margin-t-24 flex-between border round " wx:for="{{list}}" wx:key="index">
+  <view class="flex flex-between margin-t-24 border round " wx:for="{{list}}" wx:key="index">
 
     <view class="padding-8">
       <view class="bold">{{item.name}}</view>
@@ -9,7 +9,7 @@
     </view>
 
     <view class="flex-column items-end flex-between" wx:if="{{item._openid == myOpenId}}">
-      <view class="btn-plus del">×</view>
+      <view class="text-size-sm padding-x-4 text-height-sm" bindtap="delete" mark:index="{{index}}">×</view>
       <navigator class="padding-8" url="/pages/course/edit/index?index={{index}}">
         Edit
       </navigator>
@@ -17,8 +17,10 @@
 
   </view>
 
-  <navigator class="margin-t-24" url="/pages/course/edit/index">
-    <button class="bg-color-primary color-white">Add New</button>
-  </navigator>
-
 </view>
+
+<navigator class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white" url="/pages/course/edit/index">
+  <button class="bg-color-primary color-white">Add New</button>
+</navigator>
+
+<!-- <button class="w-full bg-color-primary color-white"></button> -->

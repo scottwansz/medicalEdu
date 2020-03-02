@@ -18,22 +18,49 @@ App({
     this.globalData = {}
   },
 
-  async getOpenId() {
+  getOpenId() {
 
     if (!this.globalData.openid) {
 
-      let res = await wx.cloud.callFunction({
+      return wx.cloud.callFunction({
+
         name: 'login',
         data: {},
+
+      }).then(res => {
+
+        // console.log('>>>> get openid from app(): ', res.result.openid)
+        this.globalData.openid = res.result.openid
+        return res.result.openid
+
       })
-      
-      console.log('>>>> get openid from app(): ', res.result.openid)
-      this.globalData.openid = res.result.openid
-      return res.result.openid
 
     } else {
 
       return this.globalData.openid
     }
-  }
+  },
+
+  getCourseList() {
+
+    if (this.globalData.courseList) return this.globalData.courseList
+
+    return wx.cloud.database().collection('course').orderBy('createdAt', 'desc').get().then(result => {
+      this.globalData.courseList = result.data
+      return this.globalData.courseList
+    })
+
+  },
+
+  getCourseMore() {
+
+    let skip =  this.globalData.courseList.length
+
+    return wx.cloud.database().collection('course').orderBy('createdAt', 'desc').skip(skip).get().then(result => {
+      this.globalData.courseList.push(...result.data) 
+      return this.globalData.courseList
+    })
+
+  },
+
 })
