@@ -57,6 +57,10 @@ page {
   height: 24px;
 }
 
+.w-10th {
+  width: 10%;
+}
+
 /* position */
 
 .position-relative {
