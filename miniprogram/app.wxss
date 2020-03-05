@@ -48,6 +48,10 @@ page {
   align-items: flex-end;
 }
 
+.z-9 {
+  z-index: 9;
+}
+
 /** Size */
 .width-full {
   width: 100%;
@@ -61,8 +65,28 @@ page {
   height: 24px;
 }
 
+.width-32 {
+  width: 32px;
+}
+
+.height-32 {
+  height: 32px;
+}
+
+.w-2nd {
+  width: 50%;
+}
+
 .w-10th {
   width: 10%;
+}
+
+.h-160 {
+  height: 160rpx;
+}
+
+.h-320 {
+  height: 320rpx;
 }
 
 /* position */
@@ -155,7 +179,7 @@ page {
 }
 
 .border {
-  border: 1px solid #38b2ac;
+  border: 1px solid gainsboro;
 }
 
 .border-white {
@@ -198,6 +222,10 @@ page {
 
 .text-center {
   text-align: center;
+}
+
+.text-22 {
+  font-size: 22px;
 }
 
 /* color */

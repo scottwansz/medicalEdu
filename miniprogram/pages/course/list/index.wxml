@@ -1,27 +1,33 @@
 <!--miniprogram/pages/course/list/index.wxml-->
 
-<navigator class="flex flex-between margin-t-24 margin-x-16 border round " url="/pages/course/detail/index?index={{index}}" wx:for="{{list}}" wx:key="index">
+<div class="flex margin-t-16 margin-x-16" wx:for="{{list}}" wx:key="index">
 
-  <view class="padding-8">
-    <view class="bold">{{item.name}}</view>
-    <view class="margin-t-16">{{item.description}}</view>
+  <!-- <navigator class="w-2nd h-160 margin-r-16 border" url="/pages/course/detail/index?index={{index}}">
+
+  </navigator> -->
+
+  <video class="w-2nd h-160 margin-r-16 border" id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video>
+
+
+  <view class="w-2nd flex flex-column flex-between">
+    <navigator class="" url="/pages/course/detail/index?index={{index}}">{{item.name}}</navigator>
+    <!-- <view class="">{{item.description}}</view> -->
+
+    <view class="flex flex-between items-center" wx:if="{{item._openid == myOpenId}}">
+      <navigator class="" url="/pages/course/edit/index?index={{index}}">
+        Edit
+      </navigator>
+      <view class="" bindtap="delete" mark:index="{{index}}">Delete</view>
+    </view>
   </view>
 
-  <view class="flex-column items-end flex-between" wx:if="{{item._openid == myOpenId}}">
+</div>
 
-    <view class="text-size-sm padding-x-4 text-height-sm" bindtap="delete" mark:index="{{index}}">×</view>
 
-    <navigator class="padding-8" url="/pages/course/edit/index?index={{index}}">
-      Edit
-    </navigator>
-
-  </view>
-
+<navigator class="position-fixed right-0 bottom-0 width-32 height-32 round-full text-center bg-color-primary color-white margin-r-16 margin-b-16 text-22" url="/pages/course/edit/index">
+  +
 </navigator>
 
-
-<navigator class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white" url="/pages/course/edit/index">
+<!-- <navigator class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white" url="/pages/course/edit/index">
   <button class="bg-color-primary color-white">Add New</button>
-</navigator>
-
-<!-- <button class="w-full bg-color-primary color-white"></button> -->
+</navigator> -->

@@ -22,7 +22,7 @@
       <button class="bg-color-primary color-white" formType="submit">Save Course</button>
     </view> -->
 
-    <view class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white">
+    <view class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white z-9">
       <button class="bg-color-primary color-white" formType="submit">Save Course</button>
     </view>
 

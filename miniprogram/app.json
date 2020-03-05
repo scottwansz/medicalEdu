@@ -24,6 +24,18 @@
     "navigationBarTitleText": "Medical Education",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/course/list/index",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "Demo"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
