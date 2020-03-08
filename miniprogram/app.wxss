@@ -28,6 +28,10 @@ page {
   justify-content: flex-start;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
 .flex-right {
   justify-content: right;
 }
@@ -129,6 +133,10 @@ page {
   margin-bottom: 16px;
 }
 
+.margin-t-8 {
+  margin-top: 8px;
+}
+
 .margin-t-16 {
   margin-top: 16px;
 }
@@ -139,6 +147,14 @@ page {
 
 .margin-b-16 {
   margin-bottom: 16px;
+}
+
+.margin-r-4 {
+  margin-right: 4px;
+}
+
+.margin-r-8 {
+  margin-right: 8px;
 }
 
 .margin-r-16 {

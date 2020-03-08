@@ -49,12 +49,14 @@ Page({
   onShow: async function() {
 
     // console.log('>>>> onshow in course list page.')
-
-    let list = await getApp().getCourseList()
-
-    this.setData({
-      list
+    wx.cloud.database().collection('course').orderBy('createdAt', 'desc').get().then(result => {
+      getApp().globalData.courseList = result.data
+      this.setData({
+        list: result.data
+      })
     })
+
+    // let list = await getApp().getCourseList()
 
   },
 
@@ -143,5 +145,15 @@ Page({
         }
       }
     })
-  }
+  },
+
+
+  showDetail(e) {
+    console.log(e.mark)
+
+    wx.navigateTo({
+      url: `/pages/course/detail/index?index=${e.mark.index}`,
+    })
+  },
+
 })

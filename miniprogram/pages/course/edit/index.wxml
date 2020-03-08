@@ -56,8 +56,9 @@
 
     <view class="flex flex-between items-center padding-y-8 margin-t-24 border-bottom">
       <!-- <view class="">File</view> -->
-      <text name=''>{{file ? 'File selected' : 'Select the file to upload'}}</text>
-      <input class="hidden" name='file' value="{{file}}"></input>
+      <text name=''>{{file ? file.name : 'Select the file to upload'}}</text>
+      <input class="hidden" name='file' value="{{file.path}}"></input>
+      <input class="hidden" name='type' value="{{file.type}}"></input>
       <image class="width-24 height-24" src="./cloud-upload.svg" bindtap="upload"></image>
     </view>
 
@@ -73,7 +74,7 @@
   <view class="flex flex-between items-center padding-y-8" wx:for="{{newMaterialList}}" wx:key="index">
 
     <view class="flex flex-1">
-      <view class="w-10th text-center">{{item.nbr}}</view>
+      <view class="w-10th text-center margin-r-4">{{item.nbr}}</view>
       <view>{{item.name}}</view>
     </view>
 
@@ -86,14 +87,14 @@
   <view class="flex flex-between items-center padding-y-8" wx:for="{{course.materials}}" wx:key="index">
 
     <view class="flex flex-1">
-      <view class="w-10th text-center">{{item.nbr}}</view>
+      <view class="w-10th text-center margin-r-4">{{item.nbr}}</view>
       <view>{{item.name}}</view>
     </view>
 
     <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="deleteOldMaterial">×</view>
   </view>
 
-  <view class="text-center margin-t-24" wx:if="{{course.Materials.length == 0}}">— No Materials —</view>
+  <view class="text-center margin-t-24" wx:if="{{course.materials.length == 0}}">— No Materials —</view>
 
 
 </view>

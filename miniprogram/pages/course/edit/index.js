@@ -83,13 +83,29 @@ Page({
 
   upload() {
     const _this = this
-    wx.chooseImage({
+    wx.chooseMessageFile({
+      count: 1,
+
       success(res) {
+
         // console.log('>>> res of file choose: ', res)
-        const file = res.tempFilePaths[0]
-        _this.setData({
-          file
-        })
+        const file = res.tempFiles[0]
+
+        if (file.type == 'video' || (file.type == 'file' && file.name.indexOf('.pdf' != -1))) {
+
+          _this.setData({
+            file
+          })
+
+        } else {
+
+          wx.showToast({
+            title: 'Only video and PDF file support',
+            duration: 2000,
+            mask: true
+          })
+
+        }
       }
     })
   },
@@ -99,16 +115,16 @@ Page({
 
     let newMaterial = e.detail.value
     this.data.newMaterialList.push(newMaterial)
-    this.data.file = null
 
     this.setData({
       showNewMaterial: false,
-      newMaterialList: this.data.newMaterialList
+      newMaterialList: this.data.newMaterialList,
+      file: null
     })
   },
 
-  deleteOldMaterial(e){
-    
+  deleteOldMaterial(e) {
+
     let index = e.mark.index
     let material = this.data.course.materials[index]
     // console.log('>>>> the old material going to delete: ', material)
@@ -134,18 +150,20 @@ Page({
 
       if (!item.file) return
 
+      // console.log(item.file)
+
       let res = await wx.cloud.uploadFile({
         cloudPath: `${courseId}/${Date.now()}.${item.file.split('.').pop()}`, // 上传至云端的路径
         filePath: item.file, // 小程序临时文件路径
       })
 
-      // console.log('>>> res of upload file: ', res.fileID)
+      // console.log('>>> res of upload file: ', res)
       item.file = res.fileID
     }
 
     // 删除文件
 
-    let fileList = this.data.materialDeleted.reduce(function (accumulator, current) {
+    let fileList = this.data.materialDeleted.reduce(function(accumulator, current) {
       accumulator.push(current.file)
       return accumulator
     }, [])
@@ -187,6 +205,7 @@ Page({
       // console.log(result)
       let list = getApp().globalData.courseList
       data._openid = this.data.myOpenId
+      data._id = _id
 
       if (this.data.index >= 0) {
 
@@ -199,8 +218,14 @@ Page({
 
       // console.log('>>> global course list got from edit page: ', getApp().globalData.courseList)
 
+      this.setData({
+        course: data,
+        newMaterialList: [],
+        materialDeleted: [],
+      })
+
       wx.hideLoading()
-      
+
       wx.showToast({
         title: 'Data saved',
       })
