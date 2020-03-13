@@ -156,4 +156,8 @@ Page({
     })
   },
 
+  // test(){
+  //   wx.cloud.database().collection('course').add({data:{}}).then(console.log)
+  // }
+
 })

@@ -1,5 +1,5 @@
 <!--miniprogram/pages/course/list/index.wxml-->
-<view class="margin-t-16 margin-x-16 border round padding-8" wx:for="{{list}}" wx:key="index">
+<view class="margin-t-16 margin-x-16 border shadown round padding-8" wx:for="{{list}}" wx:key="index">
 
   <navigator url="/pages/course/detail/index?index={{index}}">
 
@@ -21,3 +21,5 @@
 <navigator class="position-fixed right-0 bottom-0 width-32 height-32 round-full text-center bg-color-primary color-white margin-r-16 margin-b-16 text-22" url="/pages/course/edit/index">
   +
 </navigator>
+
+<!-- <button class="margin-t-16" type="primary" bindtap="test">Add</button> -->
