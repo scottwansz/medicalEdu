@@ -15,7 +15,9 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/course/detail/index"
+    "pages/course/detail/index",
+    "pages/account/index/index",
+    "pages/test/edit/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -28,11 +30,15 @@
     "list": [
       {
         "pagePath": "pages/course/list/index",
+        "iconPath": "pages/icon/home.png",
+        "selectedIconPath": "pages/icon/home-hl.png",
         "text": "Home"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "Demo"
+        "pagePath": "pages/account/index/index",
+        "iconPath": "pages/icon/book.png",
+        "selectedIconPath": "pages/icon/book-hl.png",
+        "text": "My course"
       }
     ]
   },

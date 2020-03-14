@@ -97,9 +97,6 @@ Page({
 
   delete(e) {
     // console.log('>>> delete index in course list page: ', e.mark.index)
-    wx.showLoading({
-      title: 'deleting ...',
-    })
 
     let index = e.mark.index
     let course = this.data.list[index]
@@ -111,17 +108,15 @@ Page({
       content: `Are your to delet course ${course.name} ?`,
       async success(res) {
         if (res.confirm) {
-          // console.log('>>> confirmed the delete of course')
+          wx.showLoading({
+            title: 'deleting ...',
+          })
 
           // delete the course material files
           let fileList = course.materials.reduce(function(accumulator, current) {
-            // console.log('>>> current of material lis: ', current.file)
-            // console.log('>>> accumulator of reduce in course list: ', accumulator)
             accumulator.push(current.file)
             return accumulator
           }, [])
-
-          // console.log('>>>> files of course to delecte: ', fileList)
 
           let result = await wx.cloud.deleteFile({
             fileList

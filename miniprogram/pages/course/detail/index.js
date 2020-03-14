@@ -13,24 +13,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let index = options.index
-    let course = getApp().globalData.courseList[index]
+    // let index = options.index
+    // let course = getApp().globalData.courseList[index]
 
-    this.setData({
-      index,
-      course
+    let _id = options._id
+    wx.cloud.database().collection('course').doc(_id).get().then( result => {
+      // console.log('result of onload: ', result)
+      let course = result.data
+      wx.cloud.database().collection('myCourse').doc(course._id).get().then(
+        this.setData({
+          course,
+          isTaken: true
+        })
+      ).catch(err => {
+        this.setData({
+          course,
+          isTaken: false
+        })
+      }
+      )
     })
 
-    wx.cloud.database().collection('myCourse').doc(course._id).get().then(
-      this.setData({
-        isTaken: true
-      })
-    ).catch(err => {
-      this.setData({
-        isTaken: false
-      })
-    }
-    )
+    // this.setData({
+    //   index,
+    //   course
+    // })
+
   },
 
   /**

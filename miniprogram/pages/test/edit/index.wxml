@@ -1,0 +1,26 @@
+<!--miniprogram/pages/test/edit/index.wxml-->
+<!-- list test items of this course -->
+
+<!-- add new test item -->
+
+<view class="margin-x-16 margin-t-16">
+
+	<view class="bold">Question description</view>
+	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='description' value="{{question.description}}">
+  </textarea>
+
+	<view class="margin-t-8">Answer A</view>
+	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerA' value="{{question.answerA}}"></textarea>
+
+	<view class="margin-t-8">Answer B</view>
+	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerB' value="{{question.answerB}}"></textarea>
+
+	<view class="margin-t-8">Answer C</view>
+	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerC' value="{{question.answerc}}"></textarea>
+
+	<view class="margin-t-8">Answer D</view>
+	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerD' value="{{question.answerD}}"></textarea>
+
+
+	<input placeholder="input correct answer here"></input>
+</view>

@@ -1,25 +1,26 @@
 <!--miniprogram/pages/course/list/index.wxml-->
 <view class="margin-t-16 margin-x-16 border shadown round padding-8" wx:for="{{list}}" wx:key="index">
 
-  <navigator url="/pages/course/detail/index?index={{index}}">
+	<navigator url="/pages/course/detail/index?_id={{item._id}}">
 
-    <view class="bold">{{item.name}}</view>
-    <view class="margin-t-8">{{item.description}}</view>
+		<view class="bold">{{item.name}}</view>
+		<view class="margin-t-8">{{item.description}}</view>
 
-  </navigator>
+	</navigator>
 
-  <view class="flex flex-end items-center margin-t-8" wx:if="{{item._openid == myOpenId}}">
-    <navigator class="margin-r-16" url="/pages/course/edit/index?index={{index}}">
-      Edit
-    </navigator>
-    <view class="" bindtap="delete" mark:index="{{index}}">Delete</view>
-  </view>
+	<view class="flex flex-between items-center margin-t-8" wx:if="{{item._openid == myOpenId}}">
+		<navigator url="/pages/test/edit/index?courseId={{item._id}}">Create Test</navigator>
+		<navigator class="" url="/pages/course/edit/index?index={{index}}">
+			Edit
+		</navigator>
+		<view class="" bindtap="delete" mark:index="{{index}}">Delete</view>
+	</view>
 
 </view>
 
 
 <navigator class="position-fixed right-0 bottom-0 width-32 height-32 round-full text-center bg-color-primary color-white margin-r-16 margin-b-16 text-22" url="/pages/course/edit/index">
-  +
+	+
 </navigator>
 
 <!-- <button class="margin-t-16" type="primary" bindtap="test">Add</button> -->
