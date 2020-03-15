@@ -1,0 +1,14 @@
+<!--miniprogram/pages/test/list/index.wxml-->
+
+<view class="flex items-center margin-x-16 margin-t-8" wx:for="{{list}}" wx:key="index">
+	<view class="margin-r-8">{{index + 1}}</view>
+	<navigator class="flex-1" url="/pages/test/edit/index?courseId={{courseId}}&&questionId={{item._id}}">{{item.description}}</navigator>
+	<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="delete">×</view>
+</view>
+
+<view class="text-center margin-t-24" wx:if="{{list.length == 0}}">— No Question to this course —</view>
+
+
+<navigator class="position-fixed right-0 bottom-0 width-32 height-32 round-full text-center bg-color-primary color-white margin-r-16 margin-b-16 text-22" url="/pages/test/edit/index?courseId={{courseId}}">
+	+
+</navigator>

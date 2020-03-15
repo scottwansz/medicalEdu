@@ -11,22 +11,22 @@
 		<checkbox-group bindchange="checkboxChange">
 
 			<view class="flex margin-t-8">
-				<checkbox class="margin-r-4" value="A"></checkbox>
+				<checkbox class="margin-r-4" value="A" checked="{{answerChecked.A}}"></checkbox>
 				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerA' value="{{question.answerA}}"></textarea>
 			</view>
 
 			<view class="flex items-center margin-t-8">
-				<checkbox class="margin-r-4" value="B"></checkbox>
+				<checkbox class="margin-r-4" value="B" checked="{{answerChecked.B}}"></checkbox>
 				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerB' value="{{question.answerB}}"></textarea>
 			</view>
 
 			<view class="flex margin-t-8">
-				<checkbox class="margin-r-4" value="C"></checkbox>
+				<checkbox class="margin-r-4" value="C" checked="{{answerChecked.C}}"></checkbox>
 				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerC' value="{{question.answerC}}"></textarea>
 			</view>
 
 			<view class="flex margin-t-8">
-				<checkbox class="margin-r-4" value="D"></checkbox>
+				<checkbox class="margin-r-4" value="D" checked="{{answerChecked.D}}"></checkbox>
 				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerD' value="{{question.answerD}}"></textarea>
 			</view>
 

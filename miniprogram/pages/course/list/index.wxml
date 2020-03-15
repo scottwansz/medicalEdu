@@ -9,11 +9,11 @@
 	</navigator>
 
 	<view class="flex flex-between items-center margin-t-8" wx:if="{{item._openid == myOpenId}}">
-		<navigator url="/pages/test/edit/index?courseId={{item._id}}">Create Test</navigator>
-		<navigator class="" url="/pages/course/edit/index?index={{index}}">
+		<navigator class="border-bottom" url="/pages/test/list/index?courseId={{item._id}}">Create Test</navigator>
+		<navigator class="border-bottom" url="/pages/course/edit/index?index={{index}}">
 			Edit
 		</navigator>
-		<view class="" bindtap="delete" mark:index="{{index}}">Delete</view>
+		<view class="border-bottom" bindtap="delete" mark:index="{{index}}">Delete</view>
 	</view>
 
 </view>
