@@ -1,28 +1,39 @@
 <!--miniprogram/pages/test/edit/index.wxml-->
-<!-- list test items of this course -->
-
-<!-- add new test item -->
-
 <view class="margin-x-16 margin-t-16">
+	<!-- add new test question -->
 
-	<view class="bold">Question description</view>
-	<textarea class="width-full margin-t-8 padding-8 border round border-box" name='description' value="{{question.description}}">
+	<form bindsubmit="formSubmit">
+
+		<view class="bold">Question description</view>
+		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='description' value="{{question.description}}">
   </textarea>
 
-	<checkbox-group bindchange="checkboxChange">
+		<checkbox-group bindchange="checkboxChange">
 
-		<checkbox class="margin-t-8" value="A">A</checkbox>
-		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerA' value="{{question.answerA}}"></textarea>
+			<view class="flex margin-t-8">
+				<checkbox class="margin-r-4" value="A"></checkbox>
+				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerA' value="{{question.answerA}}"></textarea>
+			</view>
 
-		<checkbox class="margin-t-8" value="B">B</checkbox>
-		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerB' value="{{question.answerB}}"></textarea>
+			<view class="flex items-center margin-t-8">
+				<checkbox class="margin-r-4" value="B"></checkbox>
+				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerB' value="{{question.answerB}}"></textarea>
+			</view>
 
-		<checkbox class="margin-t-8" value="C">C</checkbox>
-		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerC' value="{{question.answerc}}"></textarea>
+			<view class="flex margin-t-8">
+				<checkbox class="margin-r-4" value="C"></checkbox>
+				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerC' value="{{question.answerC}}"></textarea>
+			</view>
 
-		<checkbox class="margin-t-8" value="D">D</checkbox>
-		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='answerD' value="{{question.answerD}}"></textarea>
+			<view class="flex margin-t-8">
+				<checkbox class="margin-r-4" value="D"></checkbox>
+				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerD' value="{{question.answerD}}"></textarea>
+			</view>
 
-	</checkbox-group>
+		</checkbox-group>
+
+		<button class="margin-t-16" type="primary" formType="submit">Save</button>
+
+	</form>
 
 </view>

@@ -5,13 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    question: {}
+    question: {},
+    answer: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let courseId = options.courseId
+    let questionId = options.questionId ? options.questionId : `${Date.now()}-${Math.floor(Math.random()*10000)}`
+    this.setData({
+      courseId,
+      questionId
+    })
 
   },
 
@@ -65,6 +73,20 @@ Page({
   },
 
   checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    // console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    let answer =  e.detail.value
+
+    this.setData({
+      answer
+    })
+  },
+
+  formSubmit(e){
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    let data = e.detail.value
+    data.courseId = this.data.courseId
+
+    wx.cloud.database().collection('test').doc(this.data.questionId).set({data})
+    wx.cloud.database().collection('testAnswer').doc(this.data.questionId).set({data: {answer: this.data.answer}})
   }
 })

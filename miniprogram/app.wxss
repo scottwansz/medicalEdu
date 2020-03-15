@@ -44,6 +44,10 @@ page {
   justify-content: space-between;
 }
 
+.items-begin {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -181,6 +185,10 @@ page {
 
 .padding-y-8 {
   padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.padding-b-8 {
   padding-bottom: 8px;
 }
 
