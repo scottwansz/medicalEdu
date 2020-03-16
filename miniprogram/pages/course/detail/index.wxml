@@ -3,19 +3,20 @@
 
 <view class="margin-x-16 margin-t-16 border-bottom padding-y-8">
 
-  <view class="bold">{{course.name}}</view>
-  <view class="margin-t-16">{{course.description}}</view>
+	<view class="bold">{{course.name}}</view>
+	<view class="margin-t-16">{{course.description}}</view>
 
-  <view class="margin-t-16 border-bottom">Mterials</view>
+	<view class="margin-t-16 border-bottom">Mterials</view>
 
-  <view class="flex flex-between items-center margin-y-16" wx:for="{{course.materials}}" wx:key="index">
-    <view class="w-10th text-center">{{item.nbr}}</view>
-    <view class="flex-1">{{item.name}} {{item.file?'':'( no file attached )'}}</view>
-    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full bg-color-primary color-white padding-2" bindtap="openFile" mark:index="{{index}}">▶</view>
-  </view>
+	<view class="flex flex-between items-center margin-y-16" wx:for="{{course.materials}}" wx:key="index">
+		<view class="w-10th text-center">{{item.nbr}}</view>
+		<view class="flex-1">{{item.name}} {{item.file?'':'( no file attached )'}}</view>
+		<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full bg-color-primary color-white padding-2" bindtap="openFile" mark:index="{{index}}">▶</view>
+	</view>
 
 </view>
 
 <view class="margin-t-16">
-  <button class="width-full" type="primary" bindtap="takeCourse" wx:if="{{!isTaken}}">Take it</button>
+	<button class="width-full" type="primary" bindtap="takeCourse" wx:if="{{!isTaken}}">Take it</button>
+	<navigator class="margin-t-8" url="/pages/test/detail/index"><button type="primary">Test</button></navigator>
 </view>

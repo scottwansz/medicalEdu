@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
 
-    let courseId = options.courseId
+    let courseId = '1583079426863-443587' // options.courseId
     let questionId = options.questionId ? options.questionId : `${Date.now()}-${Math.floor(Math.random() * 10000)}`
 
     this.setData({

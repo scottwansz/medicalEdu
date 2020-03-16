@@ -218,6 +218,10 @@ page {
   border-bottom: 1px solid gainsboro;
 }
 
+.border-right {
+  border-right: 1px solid gainsboro;
+}
+
 .round {
   border-radius: 5px;
 }
@@ -238,6 +242,10 @@ page {
 
 .text-height-sm {
   line-height: 22px;
+}
+
+.text-height-160 {
+  line-height: 160rpx;
 }
 
 .bold {

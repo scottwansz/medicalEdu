@@ -6,7 +6,7 @@
 	<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="delete">×</view>
 </view>
 
-<view class="text-center margin-t-24" wx:if="{{list.length == 0}}">— No Question to this course —</view>
+<view class="text-center margin-t-24" wx:if="{{list.length == 0}}">— No Question to the course —</view>
 
 
 <navigator class="position-fixed right-0 bottom-0 width-32 height-32 round-full text-center bg-color-primary color-white margin-r-16 margin-b-16 text-22" url="/pages/test/edit/index?courseId={{courseId}}">

@@ -22,14 +22,16 @@ Page({
 
     let myOpenId = getApp().getOpenId()
 
-    let index = options.index
-    let course = index >= 0 ? getApp().globalData.courseList[index] : {}
+    // let index = options.index
+    // let course = index >= 0 ? getApp().globalData.courseList[index] : {}
 
-    this.setData({
-      myOpenId,
-      index,
-      course
+    let course = wx.cloud.database().collection('course').doc('1583079426863-443587').get().then(result => {
+      this.setData({
+        myOpenId,
+        course: result.data
+      })
     })
+
   },
 
   /**
@@ -203,18 +205,18 @@ Page({
     }).then(result => {
 
       // console.log(result)
-      let list = getApp().globalData.courseList
+      // let list = getApp().globalData.courseList
       data._openid = this.data.myOpenId
       data._id = _id
 
-      if (this.data.index >= 0) {
+      // if (this.data.index >= 0) {
 
-        list.splice(this.data.index, 1, data)
+      //   list.splice(this.data.index, 1, data)
 
-      } else {
+      // } else {
 
-        list.unshift(data)
-      }
+      //   list.unshift(data)
+      // }
 
       // console.log('>>> global course list got from edit page: ', getApp().globalData.courseList)
 

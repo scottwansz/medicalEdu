@@ -16,9 +16,21 @@ Page({
     // let index = options.index
     // let course = getApp().globalData.courseList[index]
 
-    let _id = options._id
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    let _id = '1583079426863-443587' // options._id
     wx.cloud.database().collection('course').doc(_id).get().then( result => {
-      // console.log('result of onload: ', result)
       let course = result.data
       wx.cloud.database().collection('myCourse').doc(course._id).get().then(
         this.setData({
@@ -33,26 +45,6 @@ Page({
       }
       )
     })
-
-    // this.setData({
-    //   index,
-    //   course
-    // })
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

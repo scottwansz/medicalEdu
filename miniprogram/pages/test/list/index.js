@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let courseId = options.courseId
+    let courseId = '1583079426863-443587' // options.courseId
 
     this.setData({
       courseId

@@ -1,15 +1,18 @@
 <!--miniprogram/pages/course/myCourse/index.wxml-->
 
-<view class="margin-t-8 margin-x-16 border-bottom padding-8 bold">My courses</view>
+<view class="flex flex-warp">
 
-<view class="margin-t-8 margin-x-16 border-bottom padding-8" wx:for="{{list}}" wx:key="index">
-
-	<navigator url="/pages/course/detail/index?_id={{item._id}}">
-
-		<view class="">{{item.name}}</view>
-		<!-- <view class="margin-t-8">{{item.description}}</view> -->
-		<view>Status: Active</view>
-
+	<navigator class="border-right flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/course/edit/index">
+		Course Update
 	</navigator>
 
+	<navigator class="flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/test/list/index">
+		Test Update
+	</navigator>
+
+</view>
+
+<view class="margin-t-8 margin-x-16 border-bottom padding-8 flex flex-between">
+	<text class="bold">My courses</text>
+	<text class="border round padding-x-4">Status</text>
 </view>

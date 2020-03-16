@@ -3,10 +3,6 @@
 
   <form bindsubmit="saveCourse">
 
-    <view class="text-right margin-t-16">
-      <text class="border round padding-x-4">Status</text>
-    </view>
-
     <view class=" margin-t-24">
       <view class="bold">Course Tittle</view>
       <input class="padding-y-8 border-bottom" name='name' value="{{course.name}}"></input>
