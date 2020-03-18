@@ -9,36 +9,37 @@
 			<view>{{index + 1}} / {{list.length}}</view>
 		</view>
 
-		<textarea class="width-full margin-t-8 padding-8 border round border-box" name='description' value="{{question.description}}">
-  </textarea>
+		<view class="width-full margin-t-8 padding-8">{{question.description}}</view>
 
-		<checkbox-group bindchange="checkboxChange">
+		<checkbox-group bindchange="checkboxChange" name='answer' value="{{['A','B']}}">
 
 			<view class="flex margin-t-8">
 				<checkbox class="margin-r-4" value="A" checked="{{answerChecked.A}}"></checkbox>
-				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerA' value="{{question.answerA}}"></textarea>
+				<view auto-height class="width-full padding-b-8 border-bottom">{{question.answerA}}</view>
 			</view>
 
 			<view class="flex items-center margin-t-8">
 				<checkbox class="margin-r-4" value="B" checked="{{answerChecked.B}}"></checkbox>
-				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerB' value="{{question.answerB}}"></textarea>
+				<view auto-height class="width-full padding-b-8 border-bottom">{{question.answerB}}</view>
 			</view>
 
 			<view class="flex margin-t-8">
 				<checkbox class="margin-r-4" value="C" checked="{{answerChecked.C}}"></checkbox>
-				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerC' value="{{question.answerC}}"></textarea>
+				<view auto-height class="width-full padding-b-8 border-bottom">{{question.answerC}}</view>
 			</view>
 
 			<view class="flex margin-t-8">
 				<checkbox class="margin-r-4" value="D" checked="{{answerChecked.D}}"></checkbox>
-				<textarea auto-height class="width-full padding-b-8 border-bottom" name='answerD' value="{{question.answerD}}"></textarea>
+				<view auto-height class="width-full padding-b-8 border-bottom">{{question.answerD}}</view>
 			</view>
 
 		</checkbox-group>
 
 		<view class="flex margin-t-16">
 			<button wx:if="{{index > 0}}" class="border-white" type="primary" bindtap="previous">Previous</button>
-			<button wx:if="{{index < list.length-1}}" class="border-white" type="primary" formType="submit">Next</button>
+			<button class="border-white" type="{{index < list.length-1?'primary':'warn'}}" formType="submit">
+				{{index < list.length-1?'Next':'Submit'}}
+			</button>
 		</view>
 
 	</form>

@@ -13,17 +13,14 @@ Page({
    */
   onLoad: async function (options) {
 
-    let list = []
-    let result = await wx.cloud.database().collection('myCourse').get()
+    let {data} = await wx.cloud.database().collection('score').get()
 
-    for(const myCourse of result.data){
-
-      let courseResult = await wx.cloud.database().collection('course').doc(myCourse._id).get()
-      list.push(courseResult.data)
-    }
+    data.map(item => {
+      item.createDate = new Date(item.createdAt).toLocaleString()
+    })
 
     this.setData({
-      list
+      list: data
     })
 
   },

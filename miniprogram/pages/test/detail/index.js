@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: 0
+    index: 0,
+    answer: [],
+    answerList: []
   },
 
   /**
@@ -68,21 +70,91 @@ Page({
 
   },
 
-  previous(){
+  previous() {
+    this.data.answerList[this.data.index] = {
+      questionId: this.data.question._id,
+      answer: this.data.answer
+    }
+
     let index = this.data.index - 1
+    this.resetData(index)
+  },
+
+  async next() {
+    this.data.answerList[this.data.index] = {
+      questionId: this.data.question._id,
+      answer: this.data.answer || []
+    }
+
+    if (this.data.index == this.data.list.length - 1) {
+
+      wx.showLoading({
+        title: 'Saving your answers',
+      })
+
+      // 统计分数
+      let correctCount = 0
+
+      // 比较答案
+      for (const item of this.data.answerList) {
+        let questionId = item.questionId
+        let result = await wx.cloud.database().collection('testAnswer').doc(questionId).get()
+        console.log(result)
+        console.log(result.data.answer.sort().join())
+        console.log(item.answer.sort().join())
+        if (result.data.answer.sort().join() == item.answer.sort().join()) {
+          item.isCorrect = true
+          correctCount ++
+        }
+      }
+
+      // 保存数据
+      let id = `${Date.now()}-${Math.floor(Math.random() * 100000)}`
+      wx.cloud.database().collection('score').doc(id).set({
+        data: {
+          courseId: this.data.question.courseId,
+          answerList: this.data.answerList,
+          createdAt: Date.now(),
+          score: Math.floor(correctCount / this.data.answerList.length * 100)
+        }
+      }).then(result => {
+        wx.hideLoading({
+          complete: (res) => {},
+        })
+        
+        wx.switchTab({
+          url: '/pages/account/index/index',
+        })
+      })
+    }
+
+    let index = this.data.index + 1
+    this.resetData(index)
+  },
+
+  resetData(index) {
     let question = this.data.list[index]
+    let answer = this.data.answerList[index] ? this.data.answerList[index].answer : []
+    // console.log("answer: ", answer)
+    let answerChecked = {
+      'A': answer.indexOf('A') >= 0 ? true : false,
+      'B': answer.indexOf('B') >= 0 ? true : false,
+      'C': answer.indexOf('C') >= 0 ? true : false,
+      'D': answer.indexOf('D') >= 0 ? true : false
+    }
+
     this.setData({
       index,
-      question
+      question,
+      answer,
+      answerChecked
     })
   },
 
-  next(){
-    let index = this.data.index + 1
-    let question = this.data.list[index]
+  checkboxChange(e) {
+    // console.log('>>> checkbox change: ', e.detail.value)
     this.setData({
-      index,
-      question
+      answer: e.detail.value
     })
   }
 })

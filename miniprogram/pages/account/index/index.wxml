@@ -1,4 +1,4 @@
-<!--miniprogram/pages/course/myCourse/index.wxml-->
+<!--miniprogram/pages/account/index/index.wxml-->
 
 <view class="flex flex-warp">
 
@@ -13,6 +13,11 @@
 </view>
 
 <view class="margin-t-8 margin-x-16 border-bottom padding-8 flex flex-between">
-	<text class="bold">My courses</text>
+	<text class="bold">My score</text>
 	<text class="border round padding-x-4">Status</text>
+</view>
+
+<view class="flex flex-between margin-t-8 margin-x-16" wx:for="{{list}}" wx:key='index'>
+	<text>{{item.score}}"</text>
+	<text>{{item.createDate}}</text>
 </view>
