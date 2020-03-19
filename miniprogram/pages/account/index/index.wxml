@@ -1,19 +1,32 @@
 <!--miniprogram/pages/account/index/index.wxml-->
 
-<view class="flex flex-warp">
+<!-- 用户 openid -->
+<view class="userinfo">
+	<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
+	<view class="userinfo-nickname-wrapper">
+		<text class="userinfo-nickname bold">{{userInfo.nickName || 'Not login'}}</text>
+		<!-- <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button> -->
+	</view>
+</view>
 
-	<navigator class="border-right flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/course/edit/index">
+<view class="flex flex-wrap">
+
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/course/edit/index">
 		Course Update
 	</navigator>
 
-	<navigator class="flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/test/list/index">
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/test/list/index">
 		Test Update
+	</navigator>
+
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/user/list/index">
+		User List
 	</navigator>
 
 </view>
 
 <view class="margin-t-8 margin-x-16 border-bottom padding-8 flex flex-between">
-	<text class="bold">My score</text>
+	<text class="bold">My scores</text>
 	<text class="border round padding-x-4">Status</text>
 </view>
 
@@ -21,3 +34,5 @@
 	<text>{{item.score}}"</text>
 	<text>{{item.createDate}}</text>
 </view>
+
+<view class="text-center margin-t-16" wx:if="{{list.length == 0}}">—— No Scores ——</view>

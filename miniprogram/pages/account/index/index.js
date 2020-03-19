@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl: './user-unlogin.png',
+    userInfo: {},
+    logged: false,
+    list: []
   },
 
   /**
@@ -13,7 +16,24 @@ Page({
    */
   onLoad: async function (options) {
 
-    let {data} = await wx.cloud.database().collection('score').get()
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              this.setData({
+                avatarUrl: res.userInfo.avatarUrl,
+                userInfo: res.userInfo
+              })
+            }
+          })
+        }
+      }
+    })
+
+    let { data } = await wx.cloud.database().collection('score').get()
 
     data.map(item => {
       item.createDate = new Date(item.createdAt).toLocaleString()
@@ -72,5 +92,29 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  onGetUserInfo: function (e) {
+
+    let userInfo = e.detail.userInfo
+
+    if (!this.data.logged && userInfo) {
+
+      wx.cloud.database().collection('user').add({
+        data: {
+          _id: '{openid}',
+          ...userInfo,
+          createTime: new Date()
+        }
+      })
+
+      this.setData({
+        logged: true,
+        avatarUrl: userInfo.avatarUrl,
+        userInfo
+      })
+    }
+  },
+
+
 })

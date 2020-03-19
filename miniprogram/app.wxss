@@ -20,8 +20,12 @@ page {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-1 {
-  flex: 1 1 10%;
+  flex: 1 1 50%;
 }
 
 .flex-start {
@@ -111,7 +115,7 @@ page {
   position: fixed;
 }
 
-.left-0{
+.left-0 {
   left: 0;
 }
 
