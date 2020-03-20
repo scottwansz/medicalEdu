@@ -64,5 +64,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  setRollState(e){
+    // console.log('index:', e.mark.index)
+    // console.log('e.detail.value: ', e.detail.value)
+    
+    let index = e.mark.index
+    let user = this.data.list[index]
+    let isRolledIn = e.detail.value
+
+    wx.cloud.database().collection('user').doc(user._id).update({
+      data:{
+        isRolledIn
+      }
+    })
   }
 })

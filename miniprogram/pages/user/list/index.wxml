@@ -1,6 +1,6 @@
 <!--miniprogram/pages/user/list/index.wxml-->
 <view class="flex flex-between items-center margin-x-16 margin-t-16" wx:for="{{list}}" wx:key="index">
-<image class="width-32 height-32 round-full margin-r-4" src="{{item.avatarUrl}}"></image>
-<text class="flex-1">{{item.nickName}}</text>
-<switch checked="{{item.isRollIn}}"></switch>
+	<image class="width-32 height-32 round-full margin-r-8" src="{{item.avatarUrl}}"></image>
+	<text class="flex-1">{{item.nickName}}</text>
+	<switch checked="{{item.isRolledIn}}" bindchange="setRollState" mark:index="{{index}}"></switch>
 </view>

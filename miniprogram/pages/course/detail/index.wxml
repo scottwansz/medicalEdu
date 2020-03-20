@@ -17,6 +17,6 @@
 </view>
 
 <view class="margin-t-16">
-	<button class="width-full" type="primary" bindtap="takeCourse" wx:if="{{!isTaken}}">Take it</button>
+	<button class="width-full" type="primary" bindtap="rollIn" wx:if="{{!user.isRolledIn}}">Roll in</button>
 	<navigator class="margin-t-8" url="/pages/test/detail/index"><button type="primary">Test</button></navigator>
 </view>

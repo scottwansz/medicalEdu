@@ -117,4 +117,13 @@ Page({
   },
 
 
+  applyCertification() {
+    wx.cloud.database().collection('user').doc('{openid}').update({
+      data: { certificattionRequested: true }
+    }).then(wx.showToast({
+      title: 'Certification apply successed.',
+    }))
+  }
+
+
 })

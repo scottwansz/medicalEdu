@@ -5,16 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: -1, // selected couse index from course list page
-    isTaken: false
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // let index = options.index
-    // let course = getApp().globalData.courseList[index]
 
   },
 
@@ -29,21 +26,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let _id = '1583079426863-443587' // options._id
-    wx.cloud.database().collection('course').doc(_id).get().then( result => {
-      let course = result.data
-      wx.cloud.database().collection('myCourse').doc(course._id).get().then(
-        this.setData({
-          course,
-          isTaken: true
-        })
-      ).catch(err => {
-        this.setData({
-          course,
-          isTaken: false
-        })
-      }
-      )
+    wx.cloud.database().collection('course').doc('1583079426863-443587').get().then(res => {
+      this.setData({
+        course: res.data
+      })
+    })
+
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
+      this.setData({
+        user: res.data
+      })
     })
   },
 
@@ -115,13 +107,18 @@ Page({
     }
   },
 
-  async takeCourse() {
-    let _id = this.data.course._id
-    let data = { courseId: this.data.course._id }
-    wx.cloud.database().collection('myCourse').doc(_id).set({ data }).then(console.log)
+  async rollIn() {
 
-    wx.switchTab({
-      url: '/pages/index/index',
+    wx.cloud.database().collection('user').doc('{openid}').update({
+      data: {
+        isRolledIn: true
+      }
+    }).then(res => {
+      this.data.user.isRolledIn = true
+      this.setData({
+        user: this.data.user
+      })
     })
+
   }
 })
