@@ -23,6 +23,10 @@
 		User List
 	</navigator>
 
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/account/student/index">
+		My Profile
+	</navigator>
+
 </view>
 
 <view class="margin-t-8 margin-x-16 border-bottom padding-8 flex flex-between">

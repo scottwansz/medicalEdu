@@ -13,6 +13,12 @@ Page({
    */
   onLoad: function (options) {
 
+    wx.cloud.database().collection('student').doc('{openid}').get()
+      .then()
+      .catch(err => wx.navigateTo({
+        url: '/pages/account/student/index',
+      }))
+
   },
 
   /**

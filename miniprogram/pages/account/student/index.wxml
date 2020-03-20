@@ -1,0 +1,29 @@
+<!--miniprogram/pages/account/student/index.wxml-->
+<view class="margin-x-16">
+
+	<form bindsubmit="formSubmit">
+
+		<view class="flex flex-center margin-t-16">
+			<image class="h-320" src="../../../images/qr.jpg" mode="aspectFit"></image>
+		</view>
+
+		<view class="bold margin-t-16">Name</view>
+		<input class="border-bottom padding-y-8" name='name' value="{{student.name}}"></input>
+
+		<view class="bold margin-t-16">Address</view>
+		<input class="border-bottom padding-y-8" name='address' value="{{student.address}}"></input>
+
+		<view class="bold margin-t-16">Email</view>
+		<input class="border-bottom padding-y-8" name='email' value="{{student.email}}"></input>
+
+		<view class="bold margin-t-16">Phone Number</view>
+		<input class="border-bottom padding-y-8" name='phoneNumber' value="{{student.phoneNumber}}"></input>
+
+		<view class="bold margin-t-16">Company Name</view>
+		<input class="border-bottom padding-y-8" name='corpName' value="{{student.corpName}}"></input>
+
+		<button class="margin-t-24" type="primary" formType="submit">Submit</button>
+
+	</form>
+
+</view>
