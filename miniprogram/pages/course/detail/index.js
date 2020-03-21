@@ -38,6 +38,12 @@ Page({
       })
     })
 
+    wx.cloud.database().collection('courseMaterial').orderBy('nbr', 'asc').get().then(res => {
+      this.setData({
+        materials: res.data
+      })
+    })
+
     wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
       this.setData({
         user: res.data
@@ -82,7 +88,7 @@ Page({
 
   openFile(e) {
     // console.log(e.mark.index)
-    let material = this.data.course.materials[e.mark.index]
+    let material = this.data.materials[e.mark.index]
 
     if (material.type == 'video') {
 

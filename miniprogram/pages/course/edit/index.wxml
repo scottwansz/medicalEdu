@@ -10,13 +10,8 @@
 
     <view class="margin-t-24">
       <view class="bold margin-b-16">Description</view>
-      <!-- <input class="padding-y-8 border-bottom" name='description' value="{{course.description}}"></input> -->
       <textarea class="width-full padding-8 border round border-box" name='description' value="{{course.description}}"></textarea>
     </view>
-
-    <!-- <view class="flex-center btn-area margin-t-24">
-      <button class="bg-color-primary color-white" formType="submit">Save Course</button>
-    </view> -->
 
     <view class="w-full position-fixed left-0 right-0 bottom-0 border text-center bg-color-primary color-white z-9">
       <button class="bg-color-primary color-white" formType="submit">Save Course</button>
@@ -65,29 +60,16 @@
   </form>
 
 
-  <!-- Material newly added -->
-
-  <view class="flex flex-between items-center padding-y-8" wx:for="{{newMaterialList}}" wx:key="index">
-
-    <view class="flex flex-1">
-      <view class="w-10th text-center margin-r-4">{{item.nbr}}</view>
-      <view>{{item.name}}</view>
-    </view>
-
-    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full">×</view>
-  </view>
-
-
   <!-- original material in course -->
 
-  <view class="flex flex-between items-center padding-y-8" wx:for="{{course.materials}}" wx:key="index">
+  <view class="flex flex-between items-center padding-y-8" wx:for="{{materials}}" wx:key="index">
 
     <view class="flex flex-1">
       <view class="w-10th text-center margin-r-4">{{item.nbr}}</view>
       <view>{{item.name}}</view>
     </view>
 
-    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="deleteOldMaterial">×</view>
+    <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="deleteMaterial">×</view>
   </view>
 
   <view class="text-center margin-t-24" wx:if="{{course.materials.length == 0}}">— No Materials —</view>
