@@ -1,7 +1,7 @@
 <!--miniprogram/pages/account/index/index.wxml-->
 
 <!-- 用户 openid -->
-<view class="userinfo bg-color-primary">
+<view class="userinfo bg-color-primary border">
 	<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
 	<text class="userinfo-nickname bold color-white">{{userInfo.nickName || 'Not login'}}</text>
 </view>

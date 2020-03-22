@@ -169,7 +169,7 @@ page {
   margin-right: 16px;
 }
 
-.padding-2 {
+.padding-4 {
   padding: 4px;
 }
 
@@ -180,6 +180,11 @@ page {
 .padding-x-4 {
   padding-left: 4px;
   padding-right: 4px;
+}
+
+.padding-x-8 {
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .padding-y-4 {
@@ -231,7 +236,7 @@ page {
 }
 
 .round-full {
-  border-radius: 50%;
+  border-radius: 240rpx;
 }
 
 .shadown {

@@ -12,9 +12,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.database().collection('user').orderBy('createTime','desc').get().then(res => this.setData({
-      list: res.data
-    }))
+    wx.cloud.database().collection('user').orderBy('createTime', 'desc').get().then(res => {
+      let list = res.data
+
+      list.map(user => {
+        let pn = user.phoneNumber.split('')
+        pn.splice(3,4,'****')
+        user.phoneNumber = pn.join('')
+        return user
+      })
+
+      this.setData({
+        list
+      })
+    })
   },
 
   /**
@@ -66,16 +77,16 @@ Page({
 
   },
 
-  setRollState(e){
+  setRollState(e) {
     // console.log('index:', e.mark.index)
     // console.log('e.detail.value: ', e.detail.value)
-    
+
     let index = e.mark.index
     let user = this.data.list[index]
     let isRolledIn = e.detail.value
 
     wx.cloud.database().collection('user').doc(user._id).update({
-      data:{
+      data: {
         isRolledIn
       }
     })
