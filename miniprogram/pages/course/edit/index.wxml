@@ -25,49 +25,21 @@
 
     <view class="flex flex-between bold margin-b-16">
       <text class="margin-r-16">Materials</text>
-      <view class="btn-plus" bindtap="showNewMaterial">{{showNewMaterial ? '×' : '+'}}</view>
+      <navigator url="/pages/courseMaterial/edit/index?courseId={{course._id}}" class="btn-plus">
+        +
+      </navigator>
     </view>
 
   </view>
 
-  <!-- Add material form -->
-
-  <form class="position-relative" bindsubmit="addMaterial" wx:if="{{showNewMaterial}}">
-
-    <view class="flex flex-between items-center padding-y-8 margin-t-16 border-bottom">
-      <!-- <view class="">#</view> -->
-      <input class="" name='nbr' placeholder="Material #"></input>
-    </view>
-
-    <view class="flex flex-between items-center padding-y-8 margin-t-24 border-bottom">
-      <!-- <view class="">Name</view> -->
-      <!-- <label for="fileName">Name</label> -->
-      <input class="" id="fileName" name='name' placeholder="Material name"></input>
-    </view>
-
-    <view class="flex flex-between items-center padding-y-8 margin-t-24 border-bottom">
-      <!-- <view class="">File</view> -->
-      <text name=''>{{file ? file.name : 'Select the file to upload'}}</text>
-      <input class="hidden" name='file' value="{{file.path}}"></input>
-      <input class="hidden" name='type' value="{{file.type}}"></input>
-      <image class="width-24 height-24" src="./cloud-upload.svg" bindtap="upload"></image>
-    </view>
-
-    <view class="padding-y-8 margin-t-24">
-      <button class="bg-color-secondary color-secondary" formType="submit">Add Material</button>
-    </view>
-
-  </form>
-
-
-  <!-- original material in course -->
+  <!-- materials in course -->
 
   <view class="flex flex-between items-center padding-y-8" wx:for="{{materials}}" wx:key="index">
 
-    <view class="flex flex-1">
+    <navigator class="flex flex-1" url="/pages/courseMaterial/edit/index?_id={{item._id}}">
       <view class="w-10th text-center margin-r-4">{{item.nbr}}</view>
       <view>{{item.name}}</view>
-    </view>
+    </navigator>
 
     <view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="deleteMaterial">×</view>
   </view>

@@ -5,11 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    file: '',
-    material: {},
-    course: {},
 
-    showNewMaterial: false
   },
 
   /**
@@ -21,12 +17,6 @@ Page({
       this.setData({
         // myOpenId,
         course: result.data
-      })
-    })
-
-    wx.cloud.database().collection('courseMaterial').orderBy('nbr', 'desc').get().then(res => {
-      this.setData({
-        materials: res.data
       })
     })
 
@@ -43,7 +33,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.cloud.database().collection('courseMaterial').orderBy('nbr', 'asc').get().then(res => {
+      this.setData({
+        materials: res.data
+      })
+    })
   },
 
   /**
@@ -78,65 +72,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  },
-
-  upload() {
-    const _this = this
-    wx.chooseMessageFile({
-      count: 1,
-
-      success(res) {
-
-        // console.log('>>> res of file choose: ', res)
-        const file = res.tempFiles[0]
-
-        if (file.type == 'video' || (file.type == 'file' && file.name.indexOf('.pdf' != -1))) {
-
-          _this.setData({
-            file
-          })
-
-        } else {
-
-          wx.showToast({
-            title: 'Only video and PDF file support',
-            duration: 2000,
-            mask: true
-          })
-
-        }
-      }
-    })
-  },
-
-  async addMaterial(e) {
-    // console.log('form new Material 发生了submit事件，携带数据为：', e.detail.value)
-
-    let material = e.detail.value
-
-    let { fileID } = await wx.cloud.uploadFile({
-
-      cloudPath: `${this.data.course._id}/${Date.now()}.${material.file.split('.').pop()}`, // 上传至云端的路径
-      filePath: material.file, // 小程序临时文件路径
-
-    })
-
-    material.file = fileID
-    material.courseId = this.data.course._id
-
-    let {_id} = wx.cloud.database().collection('courseMaterial').add({ data: material })
-
-    material._id = _id
-
-    this.data.materials.push(material)
-
-    this.setData({
-      showNewMaterial: false,
-      materials: this.data.materials,
-      material: {},
-      file: null
-    })
 
   },
 
@@ -175,7 +110,7 @@ Page({
     let _id = this.data.course._id ? this.data.course._id : `${Date.now()}-${Math.floor(Math.random() * 1000000)}`
 
     wx.cloud.database().collection('course').doc(_id).set({
-      data
+      data: e.detail.value
     }).then(res => {
 
       wx.hideLoading()
@@ -187,9 +122,4 @@ Page({
 
   },
 
-  showNewMaterial() {
-    this.setData({
-      showNewMaterial: !this.data.showNewMaterial
-    })
-  }
 })

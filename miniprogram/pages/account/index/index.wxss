@@ -1,22 +1,13 @@
 /* miniprogram/pages/course/myCourse/index.wxss */
 
-
-.userinfo, .uploader, .tunnel {
-  /* margin-top: 40rpx; */
+.userinfo {
   height: 140rpx;
   width: 100%;
-  background: #fff;
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
-  border-left: none;
-  border-right: none;
+  padding-left: 16px;
+  /* background: #fff; */
   display: flex;
-  flex-direction: row;
   align-items: center;
-  transition: all 300ms ease;
-}
-
-.userinfo {
-  padding-left: 120rpx;
+  /* transition: all 300ms ease; */
 }
 
 .userinfo-avatar {
@@ -32,14 +23,18 @@
   width: 100rpx;
 }
 
+.userinfo-nickname {
+  padding-left: 16px;
+  flex: 1;
+}
 
-.userinfo-avatar:after {
+
+/* .userinfo-avatar:after {
   border: none;
 }
 
 .userinfo-nickname {
   font-size: 32rpx;
-  /* color: #007aff; */
   background-color: white;
   background-size: cover;
   text-align: center;
@@ -53,4 +48,4 @@
 
 .userinfo-nickname-wrapper {
   flex: 1;
-}
+} */

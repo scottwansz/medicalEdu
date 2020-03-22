@@ -100,12 +100,8 @@ Page({
 
     if (!this.data.logged && userInfo) {
 
-      wx.cloud.database().collection('user').add({
-        data: {
-          _id: '{openid}',
-          ...userInfo,
-          createTime: new Date()
-        }
+      wx.cloud.database().collection('user').doc('{openid}').update({
+        data: userInfo
       })
 
       this.setData({

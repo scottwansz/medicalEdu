@@ -1,4 +1,4 @@
-// miniprogram/pages/account/student/index.js
+// miniprogram/pages/account/user/index.js
 Page({
 
   /**
@@ -12,8 +12,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.database().collection('student').doc('{openid}').get().then(res => this.setData({
-      student: res.data
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({
+      user: res.data
     }))
   },
 
@@ -68,16 +68,25 @@ Page({
 
   formSubmit: function (e) {
     // console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    let studen = e.detail.value
-    studen.createTime = studen.createTime ? studen.createTime : new Date()
+    let user = e.detail.value
 
-    wx.cloud.database().collection('student').doc('{openid}').set({
-      data: studen
-    }).then(res => {
-      wx.navigateBack({
+    if (this.data.user) { // 修改
+
+      wx.cloud.database().collection('user').doc(this.data.user._id).update({ data: user }).then(res => wx.navigateBack({
         complete: (res) => { },
+      }))
+
+    } else {  // 新增
+      user.createTime = user.createTime ? user.createTime : new Date()
+
+      wx.cloud.database().collection('user').doc('{openid}').set({
+        data: user
+      }).then(res => {
+        wx.navigateBack({
+          complete: (res) => { },
+        })
       })
-    })
+    }
   },
 
 })

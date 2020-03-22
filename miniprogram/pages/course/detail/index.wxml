@@ -1,5 +1,5 @@
 <!--miniprogram/pages/course/detail/index.wxml-->
-<video class="width-full" id="myVideo" src="{{video || materials[0].file }}" binderror="videoErrorCallback" show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls></video>
+<video class="width-full" id="myVideo" src="{{video || materials[0].file }}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" controls></video>
 
 <view class="margin-x-16 margin-t-16 border-bottom padding-y-8">
 
@@ -9,7 +9,7 @@
 	<view class="margin-t-16 border-bottom">Mterials</view>
 
 	<view class="flex flex-between items-center margin-y-16" wx:for="{{materials}}" wx:key="index">
-		<view class="w-10th margin-r-4">{{item.nbr}}</view>
+		<view class="w-10th margin-r-8">{{item.nbr}}</view>
 		<view class="flex-1">{{item.name}} {{item.file?'':'( no file attached )'}}</view>
 		<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full bg-color-primary color-white padding-2" bindtap="openFile" mark:index="{{index}}">▶</view>
 	</view>

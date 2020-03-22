@@ -3,12 +3,13 @@
     "pages/course/detail/index",
     "pages/course/edit/index",
     "pages/course/list/index",
-    "pages/account/index/index",
     "pages/test/edit/index",
     "pages/test/list/index",
     "pages/test/detail/index",
     "pages/user/list/index",
-    "pages/account/student/index"
+    "pages/account/index/index",
+    "pages/account/student/index",
+    "pages/courseMaterial/edit/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
