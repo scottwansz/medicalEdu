@@ -15,12 +15,12 @@ Page({
     wx.cloud.database().collection('user').orderBy('createTime', 'desc').get().then(res => {
       let list = res.data
 
-      list.map(user => {
-        let pn = user.phoneNumber.split('')
-        pn.splice(3,4,'****')
-        user.phoneNumber = pn.join('')
-        return user
-      })
+      // list.map(user => {
+      //   let pn = user.phoneNumber.split('')
+      //   pn.splice(3,4,'****')
+      //   user.phoneNumber = pn.join('')
+      //   return user
+      // })
 
       this.setData({
         list
@@ -75,6 +75,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  search(e){
+    // console.log(e.detail)
+    let value = e.detail.value
+    wx.cloud.database().collection('user').where({
+      phoneNumber: wx.cloud.database().RegExp({
+        regexp: value,
+        // options: 'i',
+      })
+    }).get().then(res => this.setData({
+      list: res.data
+    }))
   },
 
   setRollState(e) {

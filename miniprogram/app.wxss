@@ -93,8 +93,16 @@ page {
   width: 10%;
 }
 
+.w-160 {
+  width: 160rpx;
+}
+
 .h-160 {
   height: 160rpx;
+}
+
+.w-320 {
+  width: 320rpx;
 }
 
 .h-320 {

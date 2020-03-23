@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({
       user: res.data
-    }))
+    })).catch(err => console.log)
   },
 
   /**
@@ -66,13 +66,40 @@ Page({
 
   },
 
+  getUserInfo(e) {
+    let userInfo = e.detail.userInfo
+
+    if (this.data.user) {
+      wx.cloud.database().collection('user').doc('{openid}').update({
+        data: {
+          userInfo
+        }
+      }).then(res => {
+        this.setData({
+          user: {...user, userInfo}
+        })
+      })
+
+    } else {
+      wx.cloud.database().collection('user').doc('{openid}').set({
+        data: {
+          userInfo
+        }
+      }).then(res => {
+        this.setData({
+          user: {userInfo}
+        })
+      })
+    }
+  },
+
   formSubmit: function (e) {
     // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     let user = e.detail.value
 
     if (this.data.user) { // 修改
 
-      wx.cloud.database().collection('user').doc(this.data.user._id).update({ data: user }).then(res => wx.navigateBack({
+      wx.cloud.database().collection('user').doc('{openid}').update({ data: user }).then(res => wx.navigateBack({
         complete: (res) => { },
       }))
 

@@ -1,14 +1,14 @@
 <!--miniprogram/pages/user/list/index.wxml-->
 
 <view class="padding-y-4 padding-x-8 border round-full flex items-center margin-x-16 margin-t-16">
-	<input class="flex-1" type="number" confirm-type="search" placeholder="Search by partial phone number"></input>
+	<input class="flex-1" type="number" bindconfirm="search" confirm-type="search" placeholder="Search by partial phone number"></input>
 	<image class="width-24 height-24" src="../../../images/search.svg"></image>
 </view>
 
 <view class="flex flex-between items-center margin-x-16 margin-t-16" wx:for="{{list}}" wx:key="index">
-	<image class="width-32 height-32 round-full margin-r-8" src="{{item.avatarUrl}}"></image>
+	<image class="width-32 height-32 round-full margin-r-8" src="{{item.userInfo.avatarUrl || '../../../images/user-unlogin.png'}}"></image>
 	<view class="flex-1 flex flex-column">
-		<text>{{item.nickName}}</text>
+		<text>{{item.userInfo.nickName}}</text>
 		<text>{{item.phoneNumber}}</text>
 	</view>
 	<switch checked="{{item.isRolledIn}}" bindchange="setRollState" mark:index="{{index}}"></switch>

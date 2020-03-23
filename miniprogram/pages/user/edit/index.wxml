@@ -1,11 +1,19 @@
 <!--miniprogram/pages/account/user/index.wxml-->
 <view class="margin-x-16">
 
+	<view class="margin-t-16 flex">
+		<image class="round-full w-160 h-160 margin-r-16" mode="aspectFit" src="{{user.userInfo.avatarUrl || '../../../images/user-unlogin.png'}}"></image>
+		<view class="flex flex-column flex-center">
+			<text>{{user.userInfo.nickName}}</text>
+			<button class="margin-t-8" wx:if="{{!user || !user.userInfo}}" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
+		</view>
+	</view>
+
 	<form bindsubmit="formSubmit">
 
-		<view class="flex flex-center margin-t-16">
+		<!-- <view class="flex flex-center margin-t-16">
 			<image class="h-320" src="../../../images/qr.jpg" mode="aspectFit"></image>
-		</view>
+		</view> -->
 
 		<view class="bold margin-t-16">Name</view>
 		<input class="border-bottom padding-y-8" name='name' value="{{user.name}}"></input>
@@ -17,7 +25,7 @@
 		<input class="border-bottom padding-y-8" name='email' value="{{user.email}}"></input>
 
 		<view class="bold margin-t-16">Phone Number</view>
-		<input class="border-bottom padding-y-8" name='phoneNumber' value="{{user.phoneNumber}}"></input>
+		<input class="border-bottom padding-y-8" type="number" name='phoneNumber' value="{{user.phoneNumber}}"></input>
 
 		<view class="bold margin-t-16">Company Name</view>
 		<input class="border-bottom padding-y-8" name='corpName' value="{{user.corpName}}"></input>

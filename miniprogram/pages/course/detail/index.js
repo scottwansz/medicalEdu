@@ -16,7 +16,7 @@ Page({
     wx.cloud.database().collection('user').doc('{openid}').get()
       .then()
       .catch(err => wx.navigateTo({
-        url: '/pages/account/student/index',
+        url: '/pages/user/edit/index',
       }))
 
   },

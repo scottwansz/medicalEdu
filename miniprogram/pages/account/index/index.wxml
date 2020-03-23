@@ -1,10 +1,10 @@
 <!--miniprogram/pages/account/index/index.wxml-->
 
 <!-- 用户 openid -->
-<view class="userinfo bg-color-primary border">
+<!-- <view class="userinfo bg-color-primary border">
 	<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
 	<text class="userinfo-nickname bold color-white">{{userInfo.nickName || 'Not login'}}</text>
-</view>
+</view> -->
 
 <view class="flex flex-wrap">
 
@@ -20,7 +20,7 @@
 		User List
 	</navigator>
 
-	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/account/student/index">
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/user/edit/index">
 		My Profile
 	</navigator>
 

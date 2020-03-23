@@ -7,8 +7,8 @@
     "pages/test/list/index",
     "pages/test/detail/index",
     "pages/user/list/index",
+    "pages/user/edit/index",
     "pages/account/index/index",
-    "pages/account/student/index",
     "pages/courseMaterial/edit/index"
   ],
   "window": {
