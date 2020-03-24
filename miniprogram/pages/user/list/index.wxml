@@ -7,9 +7,9 @@
 
 <view class="flex flex-between items-center margin-x-16 margin-t-16" wx:for="{{list}}" wx:key="index">
 	<image class="width-32 height-32 round-full margin-r-8" src="{{item.userInfo.avatarUrl || '../../../images/user-unlogin.png'}}"></image>
-	<view class="flex-1 flex flex-column">
+	<navigator class="flex-1 flex flex-column" url="/pages/user/detail/index?_id={{item._id}}">
 		<text>{{item.userInfo.nickName}}</text>
 		<text>{{item.phoneNumber}}</text>
-	</view>
+	</navigator>
 	<switch checked="{{item.isRolledIn}}" bindchange="setRollState" mark:index="{{index}}"></switch>
 </view>

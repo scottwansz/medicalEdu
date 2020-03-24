@@ -1,0 +1,19 @@
+<!--miniprogram/pages/user/detail/index.wxml-->
+
+<view class="margin-x-16 margin-t-16 flex flex-center">
+	<image class="round-full w-160 h-160" src="{{user.userInfo.avatarUrl}}"></image>
+</view>
+
+<view class="margin-x-16 margin-t-16 flex flex-between flex-wrap items-center">
+	<text>{{user.userInfo.nickName}}</text>
+	<text>{{user.name}}</text>
+	<text>{{user.phoneNumber}}</text>
+	<text>{{user.email}}</text>
+	<text>{{user.address}}</text>
+	<text>{{user.corpName}}</text>
+</view>
+
+<view class="margin-x-16 margin-t-16 flex flex-between items-center">
+	<text>CRT Requested </text>
+	<text class="border-bottom padding-4">{{user.crtRequested ? 'YES' : 'NO'}}</text>
+</view>

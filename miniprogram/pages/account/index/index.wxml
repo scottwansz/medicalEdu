@@ -39,5 +39,5 @@
 <view class="text-center margin-t-16" wx:if="{{list.length == 0}}">—— No Scores ——</view>
 
 <view class="margin-t-24">
-	<button type="primary" bindtap="applyCertification">Apply Certification</button>
+	<button wx:if="{{!user.crtRequested}}" type="primary" bindtap="applyCertification">Apply Certification</button>
 </view>

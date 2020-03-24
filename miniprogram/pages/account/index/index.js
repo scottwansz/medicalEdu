@@ -5,9 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
+    // avatarUrl: './user-unlogin.png',
+    // userInfo: {},
+    // logged: false,
     list: []
   },
 
@@ -56,7 +56,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({user: res.data}))
   },
 
   /**
@@ -115,7 +115,7 @@ Page({
 
   applyCertification() {
     wx.cloud.database().collection('user').doc('{openid}').update({
-      data: { certificattionRequested: true }
+      data: { crtRequested: true }
     }).then(wx.showToast({
       title: 'Certification apply successed.',
     }))

@@ -9,7 +9,8 @@
     "pages/user/list/index",
     "pages/user/edit/index",
     "pages/account/index/index",
-    "pages/courseMaterial/edit/index"
+    "pages/courseMaterial/edit/index",
+    "pages/user/detail/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
