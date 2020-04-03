@@ -7,13 +7,16 @@ Page({
   data: {
     index: 0,
     answer: [],
-    answerList: []
+    answerList: [],
+    score: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    wx.cloud.database().collection('user').where({ _openid: '{openid}' }).get().then(res => this.setData({ score: res.data[0].score }))
 
     let courseId = '1583079426863-443587'
     wx.cloud.database().collection('test').get()
@@ -99,29 +102,36 @@ Page({
       for (const item of this.data.answerList) {
         let questionId = item.questionId
         let result = await wx.cloud.database().collection('testAnswer').doc(questionId).get()
-        console.log(result)
-        console.log(result.data.answer.sort().join())
-        console.log(item.answer.sort().join())
+        // console.log(result)
+        // console.log(result.data.answer.sort().join())
+        // console.log(item.answer.sort().join())
         if (result.data.answer.sort().join() == item.answer.sort().join()) {
           item.isCorrect = true
-          correctCount ++
+          correctCount++
         }
       }
 
       // 保存数据
-      let id = `${Date.now()}-${Math.floor(Math.random() * 100000)}`
-      wx.cloud.database().collection('score').doc(id).set({
+      // let id = `${Date.now()}-${Math.floor(Math.random() * 100000)}`
+      let score = Math.floor(correctCount / this.data.answerList.length * 100)
+
+      if (!this.data.score || this.data.score < score) {
+        wx.cloud.database().collection('user').doc('{openid}').update({ data: { score } })
+      }
+
+      wx.cloud.database().collection('score').add({
         data: {
           courseId: this.data.question.courseId,
           answerList: this.data.answerList,
-          createdAt: Date.now(),
-          score: Math.floor(correctCount / this.data.answerList.length * 100)
+          createdAt: new Date(),
+          score //  : Math.floor(correctCount / this.data.answerList.length * 100)
         }
       }).then(result => {
+
         wx.hideLoading({
-          complete: (res) => {},
+          complete: (res) => { },
         })
-        
+
         wx.switchTab({
           url: '/pages/account/index/index',
         })

@@ -1,6 +1,6 @@
 <!--miniprogram/pages/test/list/index.wxml-->
 
-<view class="flex items-center margin-x-16 margin-t-8" wx:for="{{list}}" wx:key="index">
+<view class="flex items-center margin-x-16 margin-t-8 border-bottom padding-b-8" wx:for="{{list}}" wx:key="index">
 	<view class="margin-r-8">{{index + 1}}</view>
 	<navigator class="flex-1" url="/pages/test/edit/index?courseId={{courseId}}&&questionId={{item._id}}">{{item.description}}</navigator>
 	<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full" mark:index="{{index}}" bindtap="delete">×</view>

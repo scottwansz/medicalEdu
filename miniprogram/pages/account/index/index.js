@@ -56,7 +56,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({user: res.data}))
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({ user: res.data }))
   },
 
   /**

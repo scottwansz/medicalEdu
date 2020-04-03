@@ -26,8 +26,9 @@
 
 </view>
 
-<view class="margin-t-8 margin-x-16 border-bottom padding-8 flex flex-between">
+<view class="margin-t-8 margin-x-16 border-bottom padding-y-8 flex flex-between">
 	<text class="bold">My scores</text>
+	<text wx:if="{{user.score}}">{{user.score}}"</text>
 	<text class="border round padding-x-4">Status</text>
 </view>
 
