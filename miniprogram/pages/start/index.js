@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nextUrl: '/pages/user/edit/index'
+    url: '/pages/user/edit/index'
   },
 
   /**
@@ -15,11 +15,11 @@ Page({
     wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
 
       let user = res.data
-      let nextUrl = user.name ? '/pages/account/index/index' : '/pages/user/edit/index'
+      let url = user.name ? '/pages/course/detail/index' : '/pages/user/edit/index'
 
       this.setData({
         user,
-        nextUrl
+        url
       })
 
     }).catch(err => console.log)
@@ -101,5 +101,17 @@ Page({
       })
     }
   },
+
+  next(){
+    let url = this.data.url
+
+    wx.navigateTo({
+      url,
+    })
+
+    wx.switchTab({
+      url,
+    })
+  }
 
 })
