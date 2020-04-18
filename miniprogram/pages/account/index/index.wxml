@@ -20,7 +20,7 @@
 		User List
 	</navigator>
 
-	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/user/edit/index">
+	<navigator class="border border-box flex-1 text-center bg-color-primary color-white h-160 text-height-160" url="/pages/user/edit/index?from=myAccount">
 		My Profile
 	</navigator>
 

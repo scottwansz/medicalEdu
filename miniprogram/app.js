@@ -17,14 +17,14 @@ App({
 
     this.globalData = {}
 
-    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
+    // wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
 
-      wx.switchTab({
-        url: '/pages/course/detail/index',
-      })
-    }).catch(err => wx.navigateTo({
-      url: '/pages/user/edit/index',
-    }))
+    //   wx.switchTab({
+    //     url: '/pages/course/detail/index',
+    //   })
+    // }).catch(err => wx.navigateTo({
+    //   url: '/pages/user/edit/index',
+    // }))
   },
 
   getOpenId() {

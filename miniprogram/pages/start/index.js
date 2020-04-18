@@ -1,27 +1,29 @@
-// miniprogram/pages/account/user/index.js
+// miniprogram/pages/start/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    gotoUrl: '/pages/course/detail/index'
+    nextUrl: '/pages/user/edit/index'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    options.from == 'myAccount' ? this.data.gotoUrl = '/pages/account/index/index' : null
-
     wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
 
+      let user = res.data
+      let nextUrl = user.name ? '/pages/account/index/index' : '/pages/user/edit/index'
+
       this.setData({
-        user: res.data
+        user,
+        nextUrl
       })
 
     }).catch(err => console.log)
+
   },
 
   /**
@@ -73,16 +75,31 @@ Page({
 
   },
 
-  formSubmit: function (e) {
-    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    let user = e.detail.value
+  getUserInfo(e) {
+    let userInfo = e.detail.userInfo
 
-    wx.cloud.database().collection('user').doc('{openid}').update({ data: user }).then(res => {
-      wx.switchTab({
-        url: this.data.gotoUrl,
+    if (this.data.user) {
+      wx.cloud.database().collection('user').doc('{openid}').update({
+        data: {
+          userInfo
+        }
+      }).then(res => {
+        this.setData({
+          user: { ...user, userInfo }
+        })
       })
-    })
 
+    } else {
+      wx.cloud.database().collection('user').doc('{openid}').set({
+        data: {
+          userInfo
+        }
+      }).then(res => {
+        this.setData({
+          user: { userInfo }
+        })
+      })
+    }
   },
 
 })

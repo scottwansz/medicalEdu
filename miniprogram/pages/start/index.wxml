@@ -1,0 +1,10 @@
+<!--miniprogram/pages/start/index.wxml-->
+
+<view class="flex flex-column flex-center items-center height-full">
+
+	<image class="round-full w-160 h-160" mode="aspectFit" src="{{user.userInfo.avatarUrl || '/images/user-unlogin.png'}}"></image>
+	<button class="margin-t-16" wx:if="{{!user || !user.userInfo}}" type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
+	<text class="margin-t-16" wx:else>{{user.userInfo.nickName}}</text>
+  
+  <navigator class="margin-t-16 padding-x-8 padding-y-2 border round bg-color-primary color-white" wx:if="{{user}}" url="{{nextUrl}}">Next</navigator>
+</view>

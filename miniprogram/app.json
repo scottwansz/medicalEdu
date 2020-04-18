@@ -1,16 +1,17 @@
 {
   "pages": [
-    "pages/user/edit/index",
+    "pages/start/index",
     "pages/course/detail/index",
     "pages/course/edit/index",
     "pages/course/list/index",
+    "pages/courseMaterial/edit/index",
     "pages/test/edit/index",
     "pages/test/list/index",
     "pages/test/detail/index",
     "pages/user/list/index",
-    "pages/account/index/index",
-    "pages/courseMaterial/edit/index",
-    "pages/user/detail/index"
+    "pages/user/edit/index",
+    "pages/user/detail/index",
+    "pages/account/index/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
