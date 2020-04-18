@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function() {
+  onLaunch: function () {
 
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -16,6 +16,15 @@ App({
     }
 
     this.globalData = {}
+
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
+
+      wx.switchTab({
+        url: '/pages/course/detail/index',
+      })
+    }).catch(err => wx.navigateTo({
+      url: '/pages/user/edit/index',
+    }))
   },
 
   getOpenId() {
@@ -54,10 +63,10 @@ App({
 
   getCourseMore() {
 
-    let skip =  this.globalData.courseList.length
+    let skip = this.globalData.courseList.length
 
     return wx.cloud.database().collection('course').orderBy('createdAt', 'desc').skip(skip).get().then(result => {
-      this.globalData.courseList.push(...result.data) 
+      this.globalData.courseList.push(...result.data)
       return this.globalData.courseList
     })
 

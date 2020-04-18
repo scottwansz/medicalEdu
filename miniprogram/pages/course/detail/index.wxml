@@ -6,7 +6,7 @@
 	<view class="bold">{{course.name}}</view>
 	<view class="margin-t-16">{{course.description}}</view>
 
-	<view class="margin-t-16 border-bottom">Mterials</view>
+	<view class="margin-t-16 border-bottom">Materials</view>
 
 	<view class="flex flex-between items-center margin-y-16" wx:for="{{materials}}" wx:key="index">
 		<view class="w-10th margin-r-8">{{item.nbr}}</view>
@@ -17,6 +17,6 @@
 </view>
 
 <view class="margin-t-16">
-	<button class="width-full" type="primary" bindtap="rollIn" wx:if="{{!user.isRolledIn}}">Roll in</button>
+	<button class="width-full" type="primary" bindtap="rollIn" wx:if="{{!user.isRolledIn}}">Enroll</button>
 	<navigator class="margin-t-8" url="/pages/test/detail/index"><button type="primary">Test</button></navigator>
 </view>

@@ -13,11 +13,11 @@ Page({
    */
   onLoad: function (options) {
 
-    wx.cloud.database().collection('user').doc('{openid}').get()
-      .then()
-      .catch(err => wx.navigateTo({
-        url: '/pages/user/edit/index',
-      }))
+    // wx.cloud.database().collection('user').doc('{openid}').get()
+    //   .then()
+    //   .catch(err => wx.navigateTo({
+    //     url: '/pages/user/edit/index',
+    //   }))
 
   },
 

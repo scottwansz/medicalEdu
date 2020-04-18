@@ -12,9 +12,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.database().collection('user').doc('{openid}').get().then(res => this.setData({
-      user: res.data
-    })).catch(err => console.log)
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
+
+      this.setData({
+        user: res.data
+      })
+
+      // wx.switchTab({
+      //   url: '/pages/course/detail/index',
+      // })
+      
+    } ).catch(err => console.log)
   },
 
   /**
@@ -109,8 +117,8 @@ Page({
       wx.cloud.database().collection('user').doc('{openid}').set({
         data: user
       }).then(res => {
-        wx.navigateBack({
-          complete: (res) => { },
+        wx.switchTab({
+          url: '/pages/course/detail/index',
         })
       })
     }
