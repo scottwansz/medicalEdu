@@ -11,7 +11,7 @@
 	<view class="flex flex-between items-center margin-y-16" wx:for="{{materials}}" wx:key="index">
 		<view class="w-10th margin-r-8">{{item.nbr}}</view>
 		<view class="flex-1">{{item.name}} {{item.file?'':'( no file attached )'}}</view>
-		<view class="width-24 height-24 text-size-sm text-height-sm text-center border round-full bg-color-primary color-white padding-4" bindtap="openFile" mark:index="{{index}}">▶</view>
+		<view class="text-size-sm color-secondary" bindtap="openFile" mark:index="{{index}}">▶</view>
 	</view>
 
 </view>
