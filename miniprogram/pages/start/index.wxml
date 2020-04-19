@@ -4,7 +4,8 @@
 
 	<image class="round-full w-160 h-160" mode="aspectFit" src="{{user.userInfo.avatarUrl || '/images/user-unlogin.png'}}"></image>
 	<button class="margin-t-16" wx:if="{{!user || !user.userInfo}}" type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="getUserInfo">Login</button>
-	<text class="margin-t-16" wx:else>{{user.userInfo.nickName}}</text>
-  
-  <button class="margin-t-16" type="primary" wx:if="{{user}}" bindtap="next">Next</button>
+	<block wx:else>
+		<text class="margin-t-16 black">{{user.userInfo.nickName}}</text>
+		<text class="margin-t-16"> Wait ... </text>
+	</block>
 </view>

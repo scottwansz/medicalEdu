@@ -18,7 +18,7 @@
 		<input class="border-bottom padding-y-8" name='address' value="{{user.address}}"></input>
 
 		<view class="bold margin-t-16">Email</view>
-		<input class="border-bottom padding-y-8" type="email" name='email' value="{{user.email}}"></input>
+		<input class="border-bottom padding-y-8" name='email' value="{{user.email}}"></input>
 
 		<view class="bold margin-t-16">Phone Number</view>
 		<input class="border-bottom padding-y-8" type="number" name='phoneNumber' value="{{user.phoneNumber}}"></input>
@@ -26,7 +26,12 @@
 		<view class="bold margin-t-16">Hospital Name</view>
 		<input class="border-bottom padding-y-8" name='corpName' value="{{user.corpName}}"></input>
 
+		<view class="margin-t-16"> 
+			<view class="orange" wx:for='{{ errorList }}' wx:key='index'>{{ item }}</view>
+		</view>
+
 		<button class="margin-t-24" type="primary" formType="submit">Submit</button>
+		<button class="margin-t-8" type="warn" bindtap="delete" wx:if="{{user}}"> Delete </button>
 
 	</form>
 

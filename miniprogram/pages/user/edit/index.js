@@ -74,8 +74,29 @@ Page({
   },
 
   formSubmit: function (e) {
-    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
+
     let user = e.detail.value
+
+    // 检查数据的有效性
+
+    let errorList = []
+    user.name ? '' : errorList.push('Name is required')
+    user.email ? '' : errorList.push('Email is required')
+    user.phoneNumber ? '' : errorList.push('Phone number is requiered')
+
+    const RegExp=/^(.+)@(.+)$/;
+    user.email && user.email.match(RegExp) ? '' : errorList.push('Email error format')
+
+    if(errorList.length){
+
+      this.setData({
+        errorList
+      })
+
+      return
+    }
+
+    user.profileOK = true
 
     wx.cloud.database().collection('user').doc('{openid}').update({ data: user }).then(res => {
       wx.switchTab({
@@ -84,5 +105,13 @@ Page({
     })
 
   },
+
+  delete(){
+    wx.cloud.database().collection('user').doc('{openid}').remove().then(res => {
+      wx.navigateBack({
+        complete: (res) => {},
+      })
+    })
+  }
 
 })

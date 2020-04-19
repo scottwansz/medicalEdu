@@ -12,17 +12,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
-
-      let user = res.data
-      let url = user.name ? '/pages/course/detail/index' : '/pages/user/edit/index'
-
-      this.setData({
-        user,
-        url
-      })
-
-    }).catch(err => console.log)
 
   },
 
@@ -37,7 +26,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.cloud.database().collection('user').doc('{openid}').get().then(res => {
 
+      let user = res.data
+
+      this.setData({
+        user
+      })
+
+      let url = user.profileOK ? '/pages/course/detail/index' : '/pages/user/edit/index'
+
+      setTimeout(() => {
+        wx.navigateTo({
+          url
+        })
+
+        wx.switchTab({
+          url
+        })
+      }, 1000)
+
+    }).catch(err => console.log)
   },
 
   /**
@@ -78,40 +87,19 @@ Page({
   getUserInfo(e) {
     let userInfo = e.detail.userInfo
 
-    if (this.data.user) {
-      wx.cloud.database().collection('user').doc('{openid}').update({
-        data: {
-          userInfo
-        }
-      }).then(res => {
-        this.setData({
-          user: { ...user, userInfo }
-        })
+    wx.cloud.database().collection('user').doc('{openid}').set({
+      data: {
+        userInfo
+      }
+    }).then(res => {
+      this.setData({
+        user: { userInfo }
       })
 
-    } else {
-      wx.cloud.database().collection('user').doc('{openid}').set({
-        data: {
-          userInfo
-        }
-      }).then(res => {
-        this.setData({
-          user: { userInfo }
-        })
+      wx.navigateTo({
+        url: '/pages/user/edit/index',
       })
-    }
+    })
   },
-
-  next(){
-    let url = this.data.url
-
-    wx.navigateTo({
-      url,
-    })
-
-    wx.switchTab({
-      url,
-    })
-  }
 
 })

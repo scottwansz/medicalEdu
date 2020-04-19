@@ -300,8 +300,20 @@ page {
   color: #38b2ac;
 }
 
-.color-white {
+.white {
   color: white;
+}
+
+.black {
+  color: black;
+}
+
+.orange {
+  color: orange;
+}
+
+.red {
+  color: red;
 }
 
 .bg-color-primary {
